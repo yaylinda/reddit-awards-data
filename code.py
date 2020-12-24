@@ -1,5 +1,7 @@
 import csv
 import praw
+import time
+
 
 def write_csv(data):
   filename = 'data.csv'
@@ -44,7 +46,7 @@ def process_post_awards(data, subreddit_name, posts):
 def main():
   reddit = praw.Reddit('default', user_agent='yaylindadev')
 
-  # Top from https://blog.oneupapp.io/biggest-subreddits/
+  # From http://redditlist.com/
   top_subreddits = [
     'funny',
     'AskReddit',
@@ -57,7 +59,45 @@ def main():
     'videos',
     'movies',
     'todayilearned',
-    'news'
+    'news', 
+    'Showerthoughts',
+    'IAmA',
+    'gifs',
+    'EarthPorn',
+    'askscience',
+    'food',
+    'Jokes',
+    'explainlikeimfive',
+    'books',
+    'LifeProTips',
+    'blog',
+    'Art',
+    'mildlyinteresting',
+    'DIY',
+    'sports',
+    'nottheonion',
+    'space',
+    'gadgets',
+    'PublicFreakout',
+    'politics',
+    'NoStupidQuestions',
+    'nextfuckinglevel',
+    'tifu',
+    'dataisbeautiful',
+    'personalfinance',
+    'AmItheAsshole',
+    'AdviceAnimals',
+    'wholesomememes',
+    'TwoXChromosomes',
+    'photoshopbattles',
+    'oddlysatisfying',
+    'me_irl',
+    'oddlysatisfying',
+    'Documentaries',
+    'television',
+    'UpliftingNews',
+    'InternetIsBeautiful',
+    'Futurology'
   ]
 
   data = []
@@ -65,6 +105,7 @@ def main():
   for subreddit_name in top_subreddits:
     posts = get_top_from_subreddit(reddit, subreddit_name)
     process_post_awards(data, subreddit_name, posts)
+    time.sleep(3)
 
   write_csv(data)
 
